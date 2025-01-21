@@ -6,6 +6,7 @@ hosts_and_ports=(
 )
 
 FILES_TO_ZIP=(
+    "L.svg"
     "LICENSE"
     "README.md"
     "ads.txt"
