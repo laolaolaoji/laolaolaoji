@@ -47,7 +47,8 @@ for host_port in "${hosts_and_ports[@]}"; do
     ssh root@$hostname -p $port 'source /etc/profile && \
     cd /www/laolaolaoji && \
     unzip laolaolaoji.zip && \
-    rm -f laolaolaoji.zip'
+    rm -f laolaolaoji.zip && \
+    nginx -s reload'
 
     # 输出完成信息
     echo "Finished processing hostname: $hostname"
