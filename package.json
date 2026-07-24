@@ -1,0 +1,14 @@
+{
+  "name": "laolaolaoji-homepage",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test": "npm run build && node --test tests/*.test.mjs"
+  },
+  "devDependencies": {
+    "astro": "^5.0.0"
+  }
+}
