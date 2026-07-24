@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display:ital@0;1&display=swap");
+
+:root {
+  color-scheme: light;
+  --paper: #eee8dc;
+  --ink: #181713;
+  --muted: #67635b;
+  --accent: #b73b25;
+  --rule: rgb(24 23 19 / 22%);
+  font-family: "DM Sans", "Noto Sans", sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--paper);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
