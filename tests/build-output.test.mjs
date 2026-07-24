@@ -64,3 +64,13 @@ test("build script creates Astro output before packaging", async () => {
   assert.doesNotMatch(script, /"index\.html"/);
   assert.doesNotMatch(script, /"css\/"/);
 });
+
+test("critical CSS has no render-blocking remote font dependency", async () => {
+  const css = await readFile(
+    new URL("../src/styles/global.css", import.meta.url),
+    "utf8",
+  );
+
+  assert.doesNotMatch(css, /@import\s+url\(/);
+  assert.doesNotMatch(css, /fonts\.googleapis\.com|fonts\.gstatic\.com/);
+});
