@@ -1,0 +1,21 @@
+---
+interface Props {
+  eyebrow: string;
+  heading: string;
+  roles: readonly string[];
+}
+
+const { eyebrow, heading, roles } = Astro.props;
+---
+
+<header class="hero">
+  <div class="hero__masthead reveal reveal--1">
+    <span>{eyebrow}</span>
+    <span class="hero__status">
+      <i aria-hidden="true"></i>
+      Available online
+    </span>
+  </div>
+  <h1 id="page-title" class="hero__title reveal reveal--2">{heading}</h1>
+  <p class="hero__roles reveal reveal--3">{roles.join(" · ")}</p>
+</header>

@@ -1,0 +1,26 @@
+---
+import type { SocialLink } from "../data/site";
+
+interface Props {
+  links: readonly SocialLink[];
+}
+
+const { links } = Astro.props;
+---
+
+<nav class="social reveal reveal--4" aria-label="Social profiles">
+  <p class="section-label">Elsewhere</p>
+  <ul class="social__list">
+    {
+      links.map((link) => (
+        <li>
+          <a href={link.href} target="_blank" rel="noopener noreferrer">
+            <span class="social__index">{link.index}</span>
+            <span>{link.label}</span>
+            <span class="social__arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

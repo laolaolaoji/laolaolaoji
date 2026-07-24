@@ -1,0 +1,13 @@
+---
+interface Props {
+  label: string;
+  href: string;
+}
+
+const { label, href } = Astro.props;
+---
+
+<footer class="site-footer reveal reveal--5">
+  <span>© {new Date().getFullYear()} LTX</span>
+  <a href={href} target="_blank" rel="noopener noreferrer">{label}</a>
+</footer>

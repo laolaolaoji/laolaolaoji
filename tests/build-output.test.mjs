@@ -24,3 +24,19 @@ test("homepage exposes identity and metadata without client JavaScript", async (
   assert.match(html, /property="og:title"/i);
   assert.doesNotMatch(html, /<script[^>]+type="module"/i);
 });
+
+test("homepage preserves social and registration links", async () => {
+  const html = await readFile(
+    new URL("../dist/index.html", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(html, /href="https:\/\/github\.com\/laolaolaoji"/);
+  assert.match(
+    html,
+    /href="https:\/\/www\.reddit\.com\/user\/fasting_sleep"/,
+  );
+  assert.match(html, /<footer[\s\S]*鄂ICP备17028589号-4[\s\S]*<\/footer>/i);
+  assert.match(html, /href="https:\/\/beian\.miit\.gov\.cn\/"/);
+  assert.equal((html.match(/<h1[ >]/gi) ?? []).length, 1);
+});

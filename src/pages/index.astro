@@ -1,0 +1,22 @@
+---
+import Hero from "../components/Hero.astro";
+import OrbitArtwork from "../components/OrbitArtwork.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SocialLinks from "../components/SocialLinks.astro";
+import { site } from "../data/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title={site.title} description={site.description}>
+  <main class="page-shell">
+    <div class="edition" aria-hidden="true">Portfolio / Edition 01</div>
+    <section class="composition" aria-labelledby="page-title">
+      <div class="composition__copy">
+        <Hero eyebrow={site.eyebrow} heading={site.heading} roles={site.roles} />
+        <SocialLinks links={site.socials} />
+      </div>
+      <OrbitArtwork />
+    </section>
+    <SiteFooter {...site.registration} />
+  </main>
+</BaseLayout>
