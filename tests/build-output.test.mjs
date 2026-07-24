@@ -40,3 +40,15 @@ test("homepage preserves social and registration links", async () => {
   assert.match(html, /href="https:\/\/beian\.miit\.gov\.cn\/"/);
   assert.equal((html.match(/<h1[ >]/gi) ?? []).length, 1);
 });
+
+test("mobile typography stays within the narrow viewport", async () => {
+  const css = await readFile(
+    new URL("../src/styles/global.css", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(css, /@media \(max-width: 760px\)[\s\S]*\.hero__masthead\s*{[\s\S]*flex-wrap:\s*wrap/);
+  assert.match(css, /font-size:\s*clamp\(3\.7rem,\s*18vw,\s*5\.5rem\)/);
+  assert.match(css, /\.composition\s*{[^}]*min-width:\s*0/);
+  assert.match(css, /\.composition__copy\s*{\s*min-width:\s*0/);
+});
