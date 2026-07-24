@@ -5,16 +5,7 @@ hosts_and_ports=(
     "159.75.6.191:2023"
 )
 
-FILES_TO_ZIP=(
-    "L.svg"
-    "LICENSE"
-    "README.md"
-    "ads.txt"
-    "css/"
-    "favicon.ico"
-    "index.html"
-    "robots.txt"
-)
+npm run build || exit 1
 
 # 定义输出 zip 文件的名称
 OUTPUT_ZIP="laolaolaoji.zip"
@@ -25,8 +16,8 @@ if ! command -v zip &>/dev/null; then
     exit 1
 fi
 
-# 创建 zip 文件
-zip -r "$OUTPUT_ZIP" "${FILES_TO_ZIP[@]}" >/dev/null 2>&1
+# 创建只包含 Astro 构建产物的 zip 文件
+(cd dist && zip -r "../$OUTPUT_ZIP" .) >/dev/null 2>&1
 
 du -h $OUTPUT_ZIP
 
@@ -48,8 +39,7 @@ for host_port in "${hosts_and_ports[@]}"; do
     ssh root@$hostname -p $port 'source /etc/profile && \
     cd /www/laolaolaoji && \
     unzip laolaolaoji.zip && \
-    rm -f laolaolaoji.zip && \
-    nginx -s reload'
+    rm -f laolaolaoji.zip'
 
     # 输出完成信息
     echo "Finished processing hostname: $hostname"

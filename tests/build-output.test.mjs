@@ -52,3 +52,15 @@ test("mobile typography stays within the narrow viewport", async () => {
   assert.match(css, /\.composition\s*{[^}]*min-width:\s*0/);
   assert.match(css, /\.composition__copy\s*{\s*min-width:\s*0/);
 });
+
+test("build script creates Astro output before packaging", async () => {
+  const script = await readFile(
+    new URL("../build.sh", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(script, /npm run build/);
+  assert.match(script, /cd dist/);
+  assert.doesNotMatch(script, /"index\.html"/);
+  assert.doesNotMatch(script, /"css\/"/);
+});
